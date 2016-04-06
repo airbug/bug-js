@@ -3,7 +3,6 @@
 //-------------------------------------------------------------------------------
 
 import ErrorStackParser from 'error-stack-parser';
-import StackGenerator from 'stack-generator';
 import { Stack } from '../core';
 
 

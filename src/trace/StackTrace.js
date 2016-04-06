@@ -186,7 +186,7 @@ export default class StackTrace extends Obj {
                 childTrace.setParentTrace(null);
                 return this.childTraces.splice(childIndex, 1)[0];
             }
-            throw new Error("CouldNotFindChildTrace");
+            throw new Error('CouldNotFindChildTrace');
         }
     }
 

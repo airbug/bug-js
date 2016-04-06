@@ -28,7 +28,7 @@ export default class ArgumentBug extends Bug {
      * @static
      * @const {string}
      */
-    static ILLEGAL = "ArgumentBug:Illegal";
+    static ILLEGAL = 'ArgumentBug:Illegal';
 
 
     //-------------------------------------------------------------------------------

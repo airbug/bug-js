@@ -48,7 +48,7 @@ export default class Tracer extends Obj {
          */
         this.traceTree      = new StackTraceTree();
 
-        this.traceTree.setRootTrace(this.currentTrace)
+        this.traceTree.setRootTrace(this.currentTrace);
     }
 
 

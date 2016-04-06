@@ -34,6 +34,7 @@
                 "properties": "never",
                 "exceptions": [
                     "x",
+                    "i",
                     "_"
                 ]
             }

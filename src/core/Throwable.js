@@ -5,8 +5,6 @@
 import {
     Obj
 } from 'object-js';
-import { StackTrace } from '../trace';
-import { StackUtil } from '../util';
 import _ from 'lodash';
 
 
