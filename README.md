@@ -1,2 +1,2 @@
 # bug-js
-Improved throwables library for JavaScript
+Throwables library for JavaScript
