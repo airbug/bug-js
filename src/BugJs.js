@@ -2,12 +2,21 @@
 // Imports
 //-------------------------------------------------------------------------------
 
+import _ from 'lodash';
 import {
     Bug,
     Error,
     Exception
 } from './core';
 import {
+    Expectation
+} from './expectations';
+import {
+    FunctionSpy,
+    ObjectSpy
+} from './spy';
+import {
+    AbstractMethodBug,
     ArgumentBug
 } from './throwables';
 import {
@@ -104,6 +113,17 @@ export default class BugJs {
     // Static Methods
     //-------------------------------------------------------------------------------
 
+     /**
+     * @static
+     * @param {string} methodName
+     * @param {Array.<(Throwable | Error)>=} causes
+     * @return {AbstractMethodBug}
+     */
+    static abstractMethodNotImplemented(methodName, causes) {
+        return new AbstractMethodBug(AbstractMethodBug.NOT_IMPLEMENTED, methodName,
+            `Abstract method ${methodName} has not been implemented`, causes);
+    }
+
     /**
      * @static
      * @param {string} type
@@ -173,25 +193,49 @@ export default class BugJs {
 
     /**
      * @static
+     * @param {*} value
+     * @return {Expectation}
+     */
+    static expect(value) {
+        return new Expectation(value);
+    }
+
+    /**
+     * @static
      * @param {string} argName
      * @param {*} argValue
      * @param {string} message
      * @param {Array.<(Throwable | Error)>=} causes
      * @return {ArgumentBug}
      */
-    static illegalArgumentBug(argName, argValue, message, causes) {
+    static illegalArgument(argName, argValue, message, causes) {
         const bug = new ArgumentBug(ArgumentBug.ILLEGAL, argName, argValue, message, causes);
         bug.setStackTrace(BugJs.instance.getTracer().generateStackTrace());
         return bug;
     }
 
     /**
+     * @static
      * @param {string} name
      */
     static nameTrace(name) {
         if (BugJs.instance.getEnabled()) {
             BugJs.instance.getTracer().name(name);
         }
+    }
+
+    /**
+     * @static
+     * @param {*} target
+     * @return {function(...):*}
+     */
+    static spy(target) {
+        if (_.isFunction(target)) {
+            return (new FunctionSpy(target).spy();
+        } else if (_.isObject(target)) {
+            return (new ObjectSpy(target)).spy();
+        }
+        return target;
     }
 
     /**

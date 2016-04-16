@@ -6,5 +6,5 @@
 require('babel-polyfill');
 const _ = require('lodash');
 const modules = require('./dist');
-const BugJs = modules.default;
-module.exports = _.assign(BugJs, _.omit(modules, ['default']));
+const def = modules.default;
+module.exports = _.assign(def, _.omit(modules, ['default']));
